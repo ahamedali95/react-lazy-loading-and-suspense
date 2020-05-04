@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import rootReducer from './reducers';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Information from './components/Information';
 import Home from './components/Home';
 
-const store = createStore(rootReducer);
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Home />
-  </Provider>,
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" render={({ history }) => (<Home history={history} />)} />
+      <Route exact path="/information" render={({ history }) => (<Information history={history} />)} />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
